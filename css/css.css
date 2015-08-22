@@ -184,6 +184,11 @@ body {
   letter-spacing: -0.1pt;
 }
 
+.logo-front {
+  width: 50%;
+  margin: 10px auto;
+}
+
 .cover-container {
   margin-right: auto;
   margin-left: auto;
