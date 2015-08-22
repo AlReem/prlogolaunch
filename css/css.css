@@ -120,6 +120,7 @@ body {
 .sm-icons i{
   padding: 5px;
   font-size: 30px;
+  color: #00A881;
 }
 
 .main-content {
@@ -144,7 +145,7 @@ body {
 }
 
 .right-column p{
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 
 .content-column {
