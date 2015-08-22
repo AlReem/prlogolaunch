@@ -110,11 +110,16 @@ body {
 }
 
 .lead-text {
-  animation-delay: 500ms;
+  animation-delay: 200ms;
 }
 
 .main-content {
   display: none;
+}
+
+.sm-icons i{
+  padding: 5px;
+  font-size: 30px;
 }
 
 .main-content {
