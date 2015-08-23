@@ -104,7 +104,7 @@ body {
   animation-name: fadedown;
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.950, 0.035, 0.965, 0.280);
-    animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
   animation-delay: none;
   animation-direction: forwards;
 }
@@ -202,6 +202,22 @@ body {
   margin: 10px auto;
 }
 
+.main-content-scene2 {
+    padding: 0;
+    display:block;
+}
+
+.prose a {
+    color: #00A881;
+}
+.right-column-scene2 {
+    padding: 20px 0px 25px 40px !important;
+    background-color: white;
+}
+
+.logo-scene2 {
+    padding: 20px 10px 0 40px !important;
+}
 .cover-container {
   margin-right: auto;
   margin-left: auto;

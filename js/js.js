@@ -3,11 +3,17 @@ $('.btn-launch').click(function(){
   $('.lead-text, .lead-button, .cover-heading').removeClass('animation-entry').addClass('animation-exit');
   $('.lead-button').one(animationEvent,
               function(event) {
+    // Scene 2
     $('.inner.cover').css('display', 'none');
-    $('.main-content').css('display', 'block');
-    $('.site-wrapper, .site-wrapper-inner').addClass('transit-wrapper');
-    $('.masthead, .mastfoot').css('position', 'static');
+    // $('.main-content').css('display', 'block');
+    $('.site-wrapper, .site-wrapper-inner').addClass('transit-wrapper change-background');
+    $('.masthead, .mastfoot').css('position', 'static').css('display', 'none');
     $('.logo, .prose').addClass('animation-entry2');
+    $('g#Layer_1 path').attr('fill', 'white');
+    $('.main-content').addClass('main-content-scene2');
+    $('.logo').addClass('logo-scene2');
+    $('.right-column').addClass('right-column-scene2');
+
   });
 });
 
