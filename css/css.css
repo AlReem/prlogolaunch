@@ -218,6 +218,11 @@ body {
 .logo-scene2 {
     padding: 20px 10px 0 40px !important;
 }
+.row-scene2 {
+     margin-right: 0px; 
+     margin-left: 0px;
+}
+
 .cover-container {
   margin-right: auto;
   margin-left: auto;

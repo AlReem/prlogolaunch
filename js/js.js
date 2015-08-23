@@ -12,6 +12,7 @@ $('.btn-launch').click(function(){
     $('g#Layer_1 path').attr('fill', 'white');
     $('.main-content').addClass('main-content-scene2');
     $('.logo').addClass('logo-scene2');
+    $('.row').addClass('row-scene2');
     $('.right-column').addClass('right-column-scene2');
 
   });
