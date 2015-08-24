@@ -1,3 +1,8 @@
+if(!Modernizr.cssanimations) {
+    //jQuery fallback
+    $('.lead-text, .lead-button').css('opacity', '1');
+}
+
 $('.btn-launch').click(function(){
   event.preventDefault();
   $('.lead-text, .lead-button, .cover-heading').removeClass('animation-entry').addClass('animation-exit');
@@ -17,6 +22,8 @@ $('.btn-launch').click(function(){
 
   });
 });
+
+
 
 // Function from David Walsh: http://davidwalsh.name/css-animation-callback
 function whichanimationEvent(){
