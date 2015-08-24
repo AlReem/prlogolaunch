@@ -1,6 +1,8 @@
 if(!Modernizr.cssanimations) {
     //jQuery fallback
     $('.lead-text, .lead-button').css('opacity', '1');
+    alert("This website will work only on the latest versions of browsers. Please upgrade your browser to view this website properly.  ഈ വെബ്‌സൈറ്റ് സന്ദർഷിക്കാൻ പുതിയ ബ്രൌസർ ആവശ്യമാണ്‌.  ");
+
 }
 
 $('.btn-launch').click(function(){
