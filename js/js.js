@@ -47,3 +47,79 @@ function whichanimationEvent(){
 }
 
 var animationEvent = whichanimationEvent();
+
+
+// TweenMax
+var repeatDelay = 3;  // seconds
+var repeated = 100; // times
+
+TweenMax.staggerFromTo('g#prlogotextgroup path', 2, {
+  opacity:0,
+  x:0, y:-10,
+  scale: 1.5,
+  ease:Elastic.easeIn,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+}, {
+  opacity:1,
+  x:0, y:0,
+  scale: 1,
+  ease:Elastic.easeIn,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+}, 0.05);
+
+TweenMax.from('path#prlogo-pee', 2,  {
+  opacity: 0,
+  y:10,
+  ease:Elastic.easeOut,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+});
+
+TweenMax.fromTo('path#prlogo-smallwave', 2,  {
+  opacity: 0,
+  x:-10,
+  y:15,
+  ease:Elastic.easeOut.config(1, 0.5),
+  scale: 0.7,
+  delay: 0.2,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+}, {
+  opacity: 1,
+  x:0,
+  y:0,
+  ease:Elastic.easeOut.config(1, 0.5),
+  scale: 1,
+  delay: 0.2,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+});
+
+TweenMax.fromTo('path#prlogo-bigwave', 2,  {
+  opacity: 0,
+  x:-10,
+  y:15,
+  ease:Elastic.easeOut.config(1, 0.5),
+  scale: 0.7,
+  delay: 0.4,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+}, {
+  opacity: 1,
+  x:0,
+  y:0,
+  ease:Elastic.easeOut.config(1, 0.5),
+  scale: 1,
+  delay: 0.4,
+  repeat: repeated,
+  repeatDelay: repeatDelay,
+  yoyo: true
+});
