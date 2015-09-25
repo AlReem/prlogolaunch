@@ -27,14 +27,15 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Airtime Widgets -->
-  <link href="css/airtime-widgets.css" rel="stylesheet">
+  <!-- <link href="css/airtime-widgets.css" rel="stylesheet"> -->
 
   <!-- Custom styles for this template -->
+  <!-- <link href="css/jplayer.pink.flag.css" rel="stylesheet"> -->
   <link href="css/css.css" rel="stylesheet">
 
 
   <!-- Custom styles for this template -->
-  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic' rel='stylesheet' type='text/css'>
 
   <!-- Custom styles for this template -->
   <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -48,6 +49,13 @@
 
   <!-- jQuery UI -->
   <script src="js/jquery-ui-1.8.10.custom.min.js"></script>
+
+  <!-- jplayer -->
+  <script src="js/jplayer/jquery.jplayer.min.js"></script>
+
+  <!-- jplayer playlist-->
+  <script src="js/jplayer/jplayer.playlist.min.js"></script>
+
 
   <!-- Including Airtime jquery showinfo js file -->
   <script src="js/jquery.showinfo.js"></script>
@@ -64,31 +72,52 @@
 
     <script>
     $(document).ready(function() {
-        $("#headerLiveHolder").airtimeLiveInfo({
-            sourceDomain: "https://airtime.peaceradio.com",
-            text: {onAirNow:"On Air Now", offline:"Offline", current:"Current", next:"Next"},
-            updatePeriod: 20 //seconds
-        });
+
         $("#headerLiveTrackHolder").airtimeLiveTrackInfo({
             sourceDomain: "https://airtime.peaceradio.com",
-            text: {onAirNow:"On Air Now", offline:"Offline", current:"Current", next:"Next"},
+            text: {onAirNow:"Program On Air Now", offline:"Offline", current:"Now", next:"Next"},
             updatePeriod: 20 //seconds
         });
         $("#onAirToday").airtimeShowSchedule({
             sourceDomain: "https://airtime.peaceradio.com",
-            text: {onAirToday:"On air today"},
-            updatePeriod: 5, //seconds
-            showLimit: 10
+            text: {onAirToday:"Today's schedule"},
+            updatePeriod: 60, //seconds
+            showLimit: 100
         });
-        $("#scheduleTabs").airtimeWeekSchedule({
-            sourceDomain: "https://airtime.peaceradio.com",
-            dowText:{monday:"Monday", tuesday:"Tuesday", wednesday:"Wednesday", thursday:"Thursday", friday:"Friday", saturday:"Saturday", sunday:"Sunday", nextmonday:"Next Monday", nexttuesday:"Next Tuesday",nextwednesday:"Next Wednesday", nextthursday:"Next Thursday",nextfriday:"Next Friday", nextsaturday:"Next Saturday", nextsunday:"NextSunday"},
-            miscText:{time:"Time", programName:"Program Name", details:"Details", readMore:"Read More"},
-            updatePeriod: 600 //seconds
-        });
+
         var d = new Date().getDay();
         $('#scheduleTabs').tabs({selected: d === 0 ? 6 : d-1, fx: { opacity: 'toggle' }});
+
+
+        new jPlayerPlaylist({
+      		jPlayer: "#jquery_jplayer_1",
+      		cssSelectorAncestor: "#jp_container_1"
+      	}, [
+      		{
+      			title:"Peace Radio Stream (High Quality)",
+      			mp3:"http://stream.peaceradio.com:8000/96"
+      		},
+      		{
+      			title:"Peace Radio Stream (Medium Quality)",
+      			mp3:"http://stream.peaceradio.com:8000/64"
+      		},
+      		{
+      			title:"Peace Radio Stream (Low Quality)",
+      			mp3:"http://stream.peaceradio.com:8000/32"
+      		}
+      	], {
+      		swfPath: "js/jplayer",
+      		supplied: "mp3",
+      		wmode: "window",
+      		useStateClassSkin: true,
+      		autoBlur: false,
+      		smoothPlayBar: true,
+      		keyEnabled: true
+      	});
+
     });
+
+
     </script>
 
 
@@ -102,21 +131,7 @@
 
       <div class="cover-container">
 
-        <div class="masthead clearfix">
-          <div class="inner">
-            <h3 class="masthead-brand">Peace Radio</h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Logo</a></li>
-                <li><a href="#">Get registered</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
         <div class="inner cover">
-          <h1 class="cover-heading animation-entry"></h1>
           <div class="peaceradio-logo">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 426.8 88">
             <g id="Layer_1">
@@ -176,34 +191,9 @@
               </g>
             </g>
           </svg>
-            </div>
+          </div>
 
-            <h1>"Now Playing" Widget</h1>
-  This widget displays which show is currently playing:
-  <br/>
-  <br/>
-  <div id="headerLiveHolder" style="border: 1px solid #999999; padding: 10px;"></div>
-  <br/>
-  <br/>
-  <h1>"Current Show &amp; Track Information" Widget</h1>
-  This widget displays which show and track are currently playing:
-  <br/>
-  <br/>
-  <div id="headerLiveTrackHolder" style="border: 1px solid #999999; padding: 10px;"></div>
-  <br/>
-  <br/>
-  <h1>"Today's Program" Widget</h1>
-  This widget displays the current show and shows being played later today:
-  <br/>
-  <br/>
-  <div id="onAirToday"></div>
-  <br/>
-  <br/>
-  <h1>"Weekly Program" Widget</h1>
-  This widget displays all the shows for the entire week, and the week ahead:
-  <br/>
-  <br/>
-  <div id="scheduleTabs"></div>
+
 
 
 
@@ -211,7 +201,56 @@
 
         <div class="main-content">
           <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="center-block clearfix">
+                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+                	<div class="jp-type-playlist">
+                		<div class="jp-gui jp-interface">
+                			<div class="jp-volume-controls">
+                				<button class="jp-mute" role="button" tabindex="0">
+                          <i class="fa fa-volume-off fa-fw"></i>
+                        </button>
+                				<button class="jp-volume-max" role="button" tabindex="0">
+                          <i class="fa fa-volume-up fa-fw"></i>
+                				</button>
+                				<div class="jp-volume-bar">
+                					<div class="jp-volume-bar-value" style="width: 80%;"></div>
+                				</div>
+                			</div>
+                			<div class="jp-controls-holder">
+                				<div class="jp-controls">
+                					<button class="jp-play" role="button" tabindex="0">
+                            <i class="fa"><span></span></i>
+                          </button>
+                					<button class="jp-stop" role="button" tabindex="0">
+                            <i class="fa"></i>
+                          </button>
+                				</div>
+                			</div>
+                      <div class="status"><i class="fa fa-circle-o-notch fa-spin streaming"></i>&nbsp; Streaming ...</div>
+                		</div>
+                		<div class="jp-playlist">
+                			<ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">Cro Magnon Man</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Your Face</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Cyber Sonnet</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Tempered Song</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Hidden</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Lentement</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Lismore</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">The Separation</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Beside Me</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Bubble</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Stirring of a Fool</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-09-Partir.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-09-Partir.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Partir</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Thin Ice</a></div></li></ul>
+                		</div>
+                		<div class="jp-no-solution" style="display: none;">
+                			<span>Update Required</span>
+                			To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                		</div>
+                	</div>
+                </div>
+              <div class="panel panel-default">
+                <!-- <div class="panel-heading"><h3>Current Show &amp; Track Information</h3></div> -->
+                <div class="panel-body"><div id="headerLiveTrackHolder"></div></div>
+              </div>
+            </div>
+            <!-- <h1>"Today's Program" Widget</h1>
+            This widget displays the current show and shows being played later today:
+            <br/>
+            <br/> -->
+            <div id="onAirToday"></div>
 
+          </div>
           </div>
 
           <div class="mastfoot">
@@ -228,6 +267,7 @@
 
   <!-- TweenMax -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
 
   <!-- Bootstrap core JavaScript
     ================================================== -->

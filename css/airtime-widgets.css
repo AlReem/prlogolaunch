@@ -3,11 +3,11 @@
 
 
 #headerLiveHolder, #headerLiveTrackHolder {
-    overflow: hidden;
+  overflow: hidden;
 	position:relative;
 	width:300px!important;
-	font-family: Arial,Helvetica,sans-serif;
-    font-size: 13px;
+	font-family: NotoSansMalayalam, Lato, Arial,Helvetica,sans-serif;
+  font-size: 20px;
 	margin: 0;
 	padding: 0;
     }
@@ -21,18 +21,18 @@
 	  padding: 0;
 	  }
 	#headerLiveHolder h4 {
-	  font-size:10px;
-	  color:#68bd44;
+	  font-size:16px;
+	  color:white;
 	  text-transform:uppercase;
 	  font-weight:normal;
 	  line-height:12px;
 	  }
 	#headerLiveTrackHolder span#status-current-show {
-	  font-size:10px;
-	  color:#68bd44;
+	  font-size:20px;
+	  color: white;
 	  text-transform:uppercase;
 	  font-weight:normal;
-	  line-height:12px;
+	  line-height:24px;
 	  }
 	#headerLiveHolder ul li, #headerLiveTrackHolder ul li {
 	  overflow:hidden;
@@ -40,19 +40,19 @@
 	  height:12px;
 	  padding-right:70px;
 	  font-size:11px;
-	  color:#999999;
+	  /*color:#999999;*/
 	  line-height:11px;
 	  }
 	#headerLiveHolder ul li.current, #headerLiveTrackHolder ul li.current {
 	  font-weight:bold;
-	  color:#666666;
+	  /*color:#666666;*/
 	  }
 	  #headerLiveHolder ul li span {
-		position:absolute;
-		right:0px;
+		/*position:absolute;*/
+		/*right:0px;*/
 		}
 	  #headerLiveHolder ul li span#time-elapsed {
-		right: 50px;
+		/*right: 50px;*/
 	  }
 	  #headerLiveHolder ul li span#time-elapsed:before {
 		content: "e.";
@@ -62,13 +62,13 @@
 	  }
 	  #headerLiveTrackHolder span.current{
 	  font-weight:bold;
-	  color:#666666;
-	  position:absolute;
+	  color:white;
+	  /*position:absolute;*/
 		right:10px;
 		font-size: 11px;
 	  }
 	  #headerLiveTrackHolder span#time-elapsed {
-		right: 65px;
+		/*right: 65px;*/
 	  }
 	  #headerLiveTrackHolder span#time-elapsed:before {
 		content: "e.";
@@ -76,7 +76,7 @@
 	  #headerLiveTrackHolder span#time-remaining:before {
 		content: "r.";
 	  }
-	  
+
 
 #onAirToday {
   width:300px;
@@ -122,7 +122,7 @@
 		  #onAirToday table tbody tr td.time {
 			font-weight:normal;
 			color: #666666;
-			}	
+			}
 /* = PROGRAM SCHEDULE ---------------- */
 
   /*
@@ -167,7 +167,7 @@
           margin-top:0px;
           line-height:27px;
 		  color:#333333;
-          background:#ffffff; 
+          background:#ffffff;
           border:1px solid #cac9c9; border-bottom:none;
           }
     #scheduleTabs table {
@@ -233,4 +233,3 @@
 #scheduleTabs.ui-tabs .ui-tabs-hide {
     display: none;
 }
-	  
