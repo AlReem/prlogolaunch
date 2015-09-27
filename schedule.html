@@ -69,7 +69,7 @@
   <script src="js/jplayer/jquery.jplayer.min.js"></script>
 
   <!-- jplayer playlist-->
-  <script src="js/jplayer/jplayer.playlist.min.js"></script>
+  <!-- <script src="js/jplayer/jplayer.playlist.min.js"></script> -->
 
 
   <!-- Including Airtime jquery showinfo js file -->
@@ -89,13 +89,13 @@
     $(document).ready(function() {
 
         $("#headerLiveTrackHolder").airtimeLiveTrackInfo({
-            sourceDomain: "https://airtime.peaceradio.com",
+            sourceDomain: "http://airtime.peaceradio.com/",
             text: {onAirNow:"Program On Air Now", offline:"Offline", current:"Now", next:"Next"},
             updatePeriod: 20 //seconds
         });
         $("#onAirToday").airtimeShowSchedule({
-            sourceDomain: "https://airtime.peaceradio.com",
-            text: {onAirToday:"Today's schedule"},
+            sourceDomain: "http://airtime.peaceradio.com/",
+            text: {onAirToday:"Today's schedule (IST)"},
             updatePeriod: 60, //seconds
             showLimit: 100
         });
@@ -103,32 +103,37 @@
         var d = new Date().getDay();
         $('#scheduleTabs').tabs({selected: d === 0 ? 6 : d-1, fx: { opacity: 'toggle' }});
 
+          var stream = {
+            title: "Peace Radio Stream",
+            mp3: "http://stream.peaceradio.com:8000/96"
+          },
+          ready = false;
 
-        new jPlayerPlaylist({
-      		jPlayer: "#jquery_jplayer_1",
-      		cssSelectorAncestor: "#jp_container_1"
-      	}, [
-      		{
-      			title:"Peace Radio Stream (High Quality)",
-      			mp3:"http://stream.peaceradio.com:8000/96"
-      		},
-      		{
-      			title:"Peace Radio Stream (Medium Quality)",
-      			mp3:"http://stream.peaceradio.com:8000/64"
-      		},
-      		{
-      			title:"Peace Radio Stream (Low Quality)",
-      			mp3:"http://stream.peaceradio.com:8000/32"
-      		}
-      	], {
-      		swfPath: "js/jplayer",
-      		supplied: "mp3",
-      		wmode: "window",
-      		useStateClassSkin: true,
-      		autoBlur: false,
-      		smoothPlayBar: true,
-      		keyEnabled: true
-      	});
+          $("#jquery_jplayer_1").jPlayer({
+            ready: function (event) {
+              ready = true;
+              $(this).jPlayer("setMedia", stream);
+            },
+            pause: function() {
+              $(this).jPlayer("clearMedia");
+            },
+            stop: function() {
+              $(this).jPlayer("clearMedia");
+            },
+            error: function(event) {
+              if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+                // Setup the media stream again and play it.
+                $(this).jPlayer("setMedia", stream).jPlayer("play");
+              }
+            },
+            swfPath: "../../dist/jplayer",
+            supplied: "mp3",
+            preload: "none",
+            wmode: "window",
+            useStateClassSkin: true,
+            autoBlur: false,
+            keyEnabled: true
+          });
 
     });
 
@@ -243,10 +248,7 @@
                           </button>
                 				</div>
                 			</div>
-                      <div class="status"><i class="fa fa-circle-o-notch fa-spin streaming"></i>&nbsp; Streaming ...</div>
-                		</div>
-                		<div class="jp-playlist">
-                			<ul style="display: block;"><li class="jp-playlist-current"><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">Cro Magnon Man</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Your Face</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Cyber Sonnet</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Tempered Song</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Hidden</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Lentement</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Lismore</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">The Separation</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Beside Me</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Bubble</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Stirring of a Fool</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><span class="jp-free-media">(<a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/mp3/Miaow-09-Partir.mp3" tabindex="-1">mp3</a> | <a class="jp-playlist-item-free" href="http://www.jplayer.org/audio/ogg/Miaow-09-Partir.ogg" tabindex="-1">oga</a>)</span><a href="javascript:;" class="jp-playlist-item" tabindex="0">Partir</a></div></li><li><div><a href="javascript:;" class="jp-playlist-item-remove" style="display: none;">×</a><a href="javascript:;" class="jp-playlist-item" tabindex="0">Thin Ice</a></div></li></ul>
+                      <div class="status"><i class="fa fa-circle-o-notch fa-spin streaming"></i>&nbsp; Streaming </div>
                 		</div>
                 		<div class="jp-no-solution" style="display: none;">
                 			<span>Update Required</span>
@@ -270,7 +272,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Wisdom Global Islamic Mission</p>
+              <p>Peace Radio</p>
             </div>
           </div>
 

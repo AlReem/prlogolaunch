@@ -66,8 +66,8 @@ body {
   /* For at least Firefox */
 
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+  /*-webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);*/
 }
 
 .site-wrapper-inner {
@@ -181,7 +181,7 @@ div.jp-type-playlist div.jp-playlist a {
 }
 
 .jp-audio {
-  margin-top: 25px;
+  /*margin-top: 25px;*/
   width: auto;
 }
 
@@ -432,6 +432,7 @@ div#onAirToday .widget tr td:nth-child(2) {
 
 .widget {
   list-style: none;
+  padding: 0;
 }
 
 
@@ -626,7 +627,7 @@ div#onAirToday .widget tr td:nth-child(2) {
 
  .peaceradio-logo svg {
    max-width: 45%;
-   height: 200px;
+   /*height: 200px;*/
  }
 
 
@@ -690,7 +691,7 @@ div#onAirToday .widget tr td:nth-child(2) {
 
 .peaceradio-logo {
   /*width: 700px;*/
-  margin-top: 25px;
+  /*margin-top: 25px;*/
 }
 
 g#prlogotextgroup path {

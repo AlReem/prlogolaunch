@@ -59,6 +59,7 @@
             $.ajax({url: options.sourceDomain + "api/live-info/",
                     data: {type:"endofday",limit: options.showLimit},
                     dataType: "jsonp",
+                    crossDomain: true,
                     success:function(data) {
                         processData(data);
                     },
